@@ -3,45 +3,138 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Rude Boys Big Ripper 29 - Ghost Train Haze Sativa. Enjoy the potent, flavorful experience with our latest hardware featuring better airflow.">
-    <title>Rude Boys Big Ripper 29 - Ghost Train Haze</title>
-    <link rel="stylesheet" href="css/styles.css">
+    <meta name="description" content="A nostalgic 2002-style school homepage with announcements, resources, and a staff portal.">
+    <title>Lincoln Middle School - Home of the Lynx</title>
+    <link rel="stylesheet" href="CSSstyles.css">
 </head>
 <body>
-
-<header>
-    <h1>Rude Boys Big Ripper 29 - Ghost Train Haze</h1>
-</header>
-
-<div class="container">
-    <div class="image-container">
-        <img src="images/image_3608.jpeg" alt="Rude Boys Big Ripper 29 - Ghost Train Haze">
-        <div class="image-overlay">
-            <div class="overlay-text">
-                <h3>Ghost Train Haze</h3>
-                <p>Click to learn more!</p>
+    <div class="page-frame">
+        <header class="site-header" id="top">
+            <div class="utility-bar">
+                <span>Best viewed at 800 x 600</span>
+                <span>Last updated: September 12, 2002</span>
             </div>
-        </div>
-    </div>
-    
-    <div class="product-description">
-        <h2>Ghost Train Haze - Sativa</h2>
-        <p>
-            Experience the unique flavor and aroma of Ghost Train Haze, a potent sativa strain with rich and flavorful hits. 
-            This product features our latest hardware for better airflow, delivering a smoother experience with every use.
-        </p>
-        <p>
-            **New Hardware:** Enhanced airflow for a superior experience. Perfect for those who enjoy strong, flavorful highs. 
-            Whether you're relaxing after a long day or enjoying a social gathering, Ghost Train Haze brings the energy you need.
-        </p>
-        <a href="#" class="btn-buy">Buy Now</a>
-    </div>
-</div>
+            <div class="banner">
+                <div class="crest" aria-hidden="true">LMS</div>
+                <div>
+                    <p class="district">Oak Valley Unified School District</p>
+                    <h1>Lincoln Middle School</h1>
+                    <p class="tagline">Home of the Lynx &bull; Learning, Leading, Looking Ahead</p>
+                </div>
+            </div>
+            <marquee behavior="scroll" direction="left" scrollamount="4">Welcome back Lynx! Picture day is Friday &bull; Parent night starts at 6:30 PM in the cafeteria &bull; Staff: please check the portal for duty schedules.</marquee>
+        </header>
 
-<footer>
-    <p>&copy; 2024 Rude Boys. All Rights Reserved.</p>
-</footer>
+        <table class="layout-table" role="presentation">
+            <tr>
+                <td class="left-nav" valign="top">
+                    <h2>School Menu</h2>
+                    <a href="#announcements">Announcements</a>
+                    <a href="#calendar">Calendar</a>
+                    <a href="#homework">Homework Hotline</a>
+                    <a href="#activities">Clubs &amp; Activities</a>
+                    <a href="#staff-portal">Staff Portal</a>
+                    <a href="mailto:office@lincoln.example">Contact Office</a>
 
-<script src="js/scripts.js"></script>
+                    <div class="counter-box">
+                        <span>Visitor Counter</span>
+                        <strong>0004237</strong>
+                    </div>
+
+                    <div class="badge">
+                        <span>Internet Safety Week</span>
+                        <small>Ask before you click!</small>
+                    </div>
+                </td>
+
+                <td class="main-content" valign="top">
+                    <section class="welcome-card">
+                        <h2>Welcome to Our 2002-2003 School Year!</h2>
+                        <p>
+                            Lincoln Middle School is proud to launch our new World Wide Web home.
+                            Bookmark this page for weekly bulletins, lunch news, homework links,
+                            and staff-only resources.
+                        </p>
+                        <div class="quick-links">
+                            <a href="#staff-portal">Staff Sign-In</a>
+                            <a href="#calendar">Printable Calendar</a>
+                            <a href="#homework">Homework Hotline</a>
+                        </div>
+                    </section>
+
+                    <section class="content-grid" id="announcements">
+                        <article class="panel">
+                            <h3>Principal's Message</h3>
+                            <p>
+                                Dear Lynx families, thank you for helping us start the year with
+                                great energy. Please return emergency cards by Wednesday and review
+                                the student technology agreement with your child.
+                            </p>
+                        </article>
+                        <article class="panel">
+                            <h3>Today's Bulletin</h3>
+                            <ul>
+                                <li>Jazz band tryouts meet in Room 14 after school.</li>
+                                <li>Library cards are ready for 6th graders.</li>
+                                <li>Lost and found items will be displayed near the gym.</li>
+                            </ul>
+                        </article>
+                    </section>
+
+                    <section class="content-grid three-column" id="calendar">
+                        <article class="panel mini-panel">
+                            <h3>September</h3>
+                            <p><strong>16</strong> - Book fair opens</p>
+                            <p><strong>20</strong> - Lynx spirit day</p>
+                        </article>
+                        <article class="panel mini-panel" id="homework">
+                            <h3>Homework Hotline</h3>
+                            <p>Call extension 2424 after 4 PM or check teacher notes in the staff-posted files.</p>
+                        </article>
+                        <article class="panel mini-panel" id="activities">
+                            <h3>Clubs</h3>
+                            <p>Chess, yearbook, web team, soccer intramurals, and science olympiad begin this month.</p>
+                        </article>
+                    </section>
+
+                    <section class="staff-portal" id="staff-portal">
+                        <div class="portal-header">
+                            <h2>Staff Portal</h2>
+                            <span>Secure Area - Faculty &amp; Office Staff</span>
+                        </div>
+                        <div class="portal-body">
+                            <form class="login-card" id="portal-form">
+                                <label for="staff-id">Staff ID</label>
+                                <input type="text" id="staff-id" name="staff-id" value="jteacher" autocomplete="username">
+
+                                <label for="password">Password</label>
+                                <input type="password" id="password" name="password" value="lynx2002" autocomplete="current-password">
+
+                                <button type="submit">Enter Portal</button>
+                                <p class="hint">Demo credentials are pre-filled for this static site.</p>
+                            </form>
+
+                            <div class="portal-dashboard" id="portal-dashboard" aria-live="polite">
+                                <p class="locked-message">Sign in to view staff tools.</p>
+                            </div>
+                        </div>
+                    </section>
+                </td>
+            </tr>
+        </table>
+
+        <footer>
+            <p>
+                Lincoln Middle School &bull; 1020 Lynx Lane &bull; Oak Valley, USA &bull;
+                Phone: (555) 010-2002
+            </p>
+            <p>
+                <a href="#top">Back to top</a> | <a href="mailto:webmaster@lincoln.example">Webmaster</a> |
+                This page intentionally uses classic 2002 design touches.
+            </p>
+        </footer>
+    </div>
+
+    <script src="Js.js"></script>
 </body>
 </html>
