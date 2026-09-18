@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Lincoln Middle School smoke check</title>
+  <style>
+    :root { color-scheme: light; font-family: system-ui, sans-serif; }
+    body { margin: 0; padding: 24px; color: #102040; background: #eef4ff; }
+    main { max-width: 980px; margin: 0 auto; padding: 20px; background: #fff; border: 3px double #174a9c; box-shadow: 4px 4px 0 #f0c92f; }
+    h1 { margin-top: 0; color: #003399; }
+    code { background: #eef4ff; padding: 2px 4px; }
+    #status { font-weight: 700; }
+    #results { padding-left: 24px; }
+    #results li { margin: 6px 0; }
+    .pass { color: #176b28; }
+    .fail { color: #a20d0d; }
+    iframe { display: block; width: 100%; height: 560px; margin-top: 20px; border: 3px ridge #174a9c; background: #fff; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Lincoln Middle School smoke check</h1>
+    <p>This dependency-free check renders the real <code>Index.html</code> below, verifies the homepage structure and assets, and submits the staff portal form with demo data.</p>
+    <p id="status" aria-live="polite">Running…</p>
+    <ul id="results" aria-live="polite"></ul>
+    <iframe id="site-preview" title="Lincoln Middle School homepage preview" src="Index.html"></iframe>
+  </main>
+  <script>
+    const frame = document.querySelector('#site-preview');
+    const status = document.querySelector('#status');
+    const results = document.querySelector('#results');
+    let hasRun = false;
+
+    const record = (label, passed, detail = '') => {
+      const item = document.createElement('li');
+      item.className = passed ? 'pass' : 'fail';
+      item.dataset.status = passed ? 'pass' : 'fail';
+      item.textContent = (passed ? 'PASS: ' : 'FAIL: ') + label + (detail ? ' — ' + detail : '');
+      results.append(item);
+      return passed;
+    };
+
+    const runSmokeCheck = () => {
+      if (hasRun) return;
+      hasRun = true;
+      results.replaceChildren();
+
+      let doc;
+      try {
+        doc = frame.contentDocument;
+        if (!doc) throw new Error('the preview document is unavailable');
+      } catch (error) {
+        record('Homepage can be inspected', false, 'serve this folder over HTTP, for example: python3 -m http.server 8000');
+        status.textContent = 'Smoke check failed';
+        return;
+      }
+
+      const homepageLoaded = doc.readyState === 'complete' && doc.title.includes('Lincoln Middle School');
+      record('Homepage loads with the Lincoln title', homepageLoaded);
+      record('Homepage stylesheet is linked', Boolean(doc.querySelector('link[rel="stylesheet"][href="CSSstyles.css"]')));
+      record('Homepage script is linked', Boolean(doc.querySelector('script[src="Js.js"]')));
+      record('Homepage has a visible page frame', Boolean(doc.querySelector('.page-frame')?.getBoundingClientRect().width));
+
+      const portal = doc.querySelector('#staff-portal');
+      const form = doc.querySelector('#portal-form');
+      const dashboard = doc.querySelector('#portal-dashboard');
+      record('Staff portal section exists', Boolean(portal));
+      record('Staff portal form exists', Boolean(form));
+      record('Staff dashboard target exists', Boolean(dashboard));
+
+      const staffInput = form?.querySelector('input');
+      const submitButton = form?.querySelector('button[type="submit"], input[type="submit"], button');
+      if (!staffInput || !submitButton || !dashboard) {
+        record('Staff portal accepts a demo sign-in', false, 'required form controls are missing');
+        status.textContent = 'Smoke check failed';
+        return;
+      }
+
+      staffInput.value = 'smoke-test-staff';
+      staffInput.dispatchEvent(new Event('input', { bubbles: true }));
+      submitButton.click();
+      const dashboardText = dashboard.textContent || '';
+      const dashboardShown = !dashboard.hidden && dashboardText.includes('Welcome, smoke-test-staff!');
+      record('Staff portal interaction reveals the dashboard', dashboardShown);
+      status.textContent = [...results.querySelectorAll('[data-status="fail"]')].length ? 'Smoke check failed' : 'Smoke check passed';
+    };
+
+    frame.addEventListener('load', runSmokeCheck, { once: true });
+    if (frame.contentDocument?.readyState === 'complete') runSmokeCheck();
+  </script>
+</body>
+</html>
